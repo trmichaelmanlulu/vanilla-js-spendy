@@ -132,14 +132,14 @@ body {
 }
 
 .add__type {
-    width: 55px;
+    width: 120px;
     border: 1px solid #e7e7e7;
     height: 44px;
-    font-size: 18px;
-    color: inherit;
+    font-size: 14px;
+    color: #555;
     background-color: #fff;
     margin-right: 10px;
-    font-weight: 300;
+    font-weight: 400;
     transition: border 0.3s;
 }
 
