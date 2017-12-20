@@ -46,6 +46,9 @@ body {
     text-align: center;
     text-shadow: 8px 1px 1px #00285a;
 }
+.budget__title--month {
+    font-weight: bold;
+}
 .budget {
     position: relative;
     width: 350px;
@@ -142,6 +145,8 @@ body {
 .add__type {
     width: 120px;
     border: 1px solid #e7e7e7;
+    padding: 12px 15px;
+    border-radius: 5px;
     height: 44px;
     font-size: 14px;
     color: #555;
