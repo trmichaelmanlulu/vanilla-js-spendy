@@ -119,6 +119,14 @@ body {
 *** BOTTOM PART
 **********************************************/
 
+.bottom {
+    float: left;
+    width: 100%;
+    position: relative;
+    display: block;
+    min-height: 400px;
+}
+
 /***** FORM *****/
 .add {
     padding: 14px;
