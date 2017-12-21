@@ -23,8 +23,8 @@ body {
     font-weight: 400;
 }
 
-.right { float: right; }
-.red { color: #FF5049 !important; }
+.right { float: right; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); }
+.red { color: #FF5049 !important; border: 1px solid #FF5049 !important; }
 .red-focus:focus { border: 1px solid #FF5049 !important; }
 
 /**********************************************
@@ -32,13 +32,14 @@ body {
 **********************************************/
 
 .top {
-    padding: 20px 0 100px 0;
     background: #00c6ff; /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #00c6ff, #0072ff); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #00c6ff, #0072ff);
     position: relative;
+    height: 700px;
 }
 .top h1 {
+    padding-top: 20px;
     margin-bottom: 30px;
     color: #EFF9FF;
     font-family: 'Pacifico', cursive;
@@ -50,10 +51,13 @@ body {
     font-weight: bold;
 }
 .budget {
-    position: relative;
-    width: 350px;
+    position: absolute;
+    left: 50%;
+    top: 72%;
+    transform: translate(-50%, -50%);
+    width: 23%;
     color: #fff;
-    margin: 0 auto;
+    z-index: 1;
 }
 
 .budget__title {
@@ -75,6 +79,7 @@ body {
 
 .budget__income,
 .budget__expenses {
+    position: relative;
     padding: 12px;
     text-transform: uppercase;
 }
@@ -117,29 +122,45 @@ body {
     border-radius: 3px;
 }
 
+.iphone-holder {
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    transform: translateX(-50%);
+    width: 35%;
+}
+
 
 /**********************************************
 *** BOTTOM PART
 **********************************************/
 
 .bottom {
+    background: #fff;
     float: left;
     width: 100%;
     position: relative;
     display: block;
     min-height: 400px;
+    height:  100vh;
+    z-index: 1;
 }
 
 /***** FORM *****/
 .add {
-    padding: 14px;
+    padding: 10px;
     border-bottom: 1px solid #e7e7e7;
     background-color: #f7f7f7;
+    float: left;
+    width: 100%;
 }
 
 .add__container {
     margin: 0 auto;
     text-align: center;
+    float: left;
+    width:  100%;
+    padding: 12px;
 }
 
 .add__type {
@@ -173,7 +194,7 @@ body {
 .add__value { width: 100px;}
 
 .add__btn {
-    font-size: 35px;
+    font-size: 16px;
     background: none;
     border: none;
     color: #00bdff;
@@ -181,7 +202,23 @@ body {
     display: inline-block;
     vertical-align: middle;
     line-height: 1.1;
-    margin-left: 10px;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    border: 1px solid #00bdff;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.add__btn i {
+    transition: all 0.2s ease-in-out;
+}
+
+.add__btn:hover {
+    padding: 5px 16.6px;
+}
+.add__btn:hover i {
+    font-size: 25px;
 }
 
 .add__btn:active { transform: translateY(2px); }
@@ -197,19 +234,59 @@ body {
 
 /***** LISTS *****/
 .container {
-    width: 1000px;
-    margin: 60px auto;
+    width: 1170px;
+    margin-top: 60px;
+    padding: 15px;
+    float: left;
+    position:  relative;
+    left:  50%;
+    transform: translateX(-50%);
+}
+
+.income__list,
+.expenses__list {
+    position: relative;
+    background: #f5f5f5;
+    padding: 15px 15px;
+    border-radius: 3px;
+    min-height: 400px;
+    height:  65vh;
+}
+
+.no-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.income_icon.visible {
+    display: block;
+}
+.expense_icon.visible {
+    display: block;
+}
+
+.no-item i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 150px;
+    color: rgb(218, 218, 218);
 }
 
 .income {
     float: left;
-    width: 475px;
-    margin-right: 50px;
+    width: 47%;
+    margin-right: 6%;
 }
 
 .expenses {
     float: left;
-    width: 475px;
+    width: 47%;
 }
 
 h2 {
@@ -219,19 +296,32 @@ h2 {
     margin-bottom: 15px;
 }
 
-.icome__title { color: #00bdff; }
-.expenses__title { color: #FF5049; }
-
-.item {
-    padding: 13px;
-    border-bottom: 1px solid #e7e7e7;
+.icome__title { 
+    color: #00bdff; 
+    font-size: 20px;
+    font-weight: bold; 
+}
+.expenses__title { 
+    color: #FF5049; 
+    font-size: 20px;
+    font-weight: bold; 
 }
 
-.item:first-child { border-top: 1px solid #e7e7e7; }
-.item:nth-child(even) { background-color: #f7f7f7; }
+.item {
+    position: relative;
+    background: #fff;
+    padding: 13px;
+    border-bottom: 1px solid #e7e7e7;
+    border-radius: 2px;
+    margin-bottom: 1px;
+}
+
+.item:nth-child(even) { background-color: #fbfbfb; }
 
 .item__description {
-    float: left;
+    float: left;    
+    max-width: 55%;
+    word-wrap: break-word;
 }
 
 .item__value {
@@ -250,18 +340,21 @@ h2 {
     width: 32px;
     text-align: center;
 }
-
+button i {
+    transition: all 0.2s ease-in-out;
+}
 .income .item__value,
 .income .item__delete--btn {
     color: #00bdff;
 }
+.income .item__delete--btn:hover i { color: #005fcc; }
 
 .expenses .item__value,
 .expenses .item__percentage,
 .expenses .item__delete--btn {
     color: #FF5049;
 }
-
+.expenses .item__delete--btn:hover i { color: rgb(221, 62, 56); }
 
 .item__delete {
     float: left;
@@ -275,15 +368,11 @@ h2 {
     display: inline-block;
     vertical-align: middle;
     line-height: 1;
-    display: none;
+    margin-left: 30px;
 }
 
 .item__delete--btn:focus { outline: none; }
 .item__delete--btn:active { transform: translateY(2px); }
-
-.item:hover .item__delete--btn { display: block; }
-.item:hover .item__value { transform: translateX(-20px); }
-.item:hover .item__percentage { transform: translateX(-20px); }
 
 
 .unpaid {
@@ -296,3 +385,130 @@ h2 {
 .unpaid .item__percentage { box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1); }
 .unpaid:hover .item__description { font-weight: 900; }
 
+
+/**********************************************
+*** MEDIA QUERIES
+**********************************************/
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .iphone-holder {
+        width: 40%;
+    }
+    .budget {
+        width: 25%;
+    }
+    .top {
+        height: 700px;
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        width: 970px;
+        margin-top: 40px;
+    }
+    .top {
+        height: 650px;
+    }
+    .iphone-holder {
+        width: 45%;
+    }
+    .budget {
+        width: 28%;
+        margin-top: 10px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .container {
+        width: 750px;
+        margin-top: 30px;
+    }
+    .top {
+        height: 630px;
+    }
+    .iphone-holder {
+        width: 50%;
+    }
+    .budget {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+        margin-top: 30px;
+        padding: 30px 15px;
+    }
+    .top {
+        height: 630px;
+    }
+    .iphone-holder {
+        width: 80%;
+    }
+    .budget {
+        margin-top: 5px;
+        width: 50%;
+    }
+    .income,
+    .expenses {
+        width: 100%;
+        margin-right: 0;
+    }
+    .add {
+        height: 210px;
+        padding: 20px 0;
+    }
+    .add__container {
+        padding: 0;
+    }
+    .add__type,
+    .add__value {
+        width: 45%;
+        margin: 0;
+    }
+    .add__type {
+        margin-right: 2%;
+    }
+    .add__description {
+        width: 92%;
+        float: left;
+        margin: 10px 4%;
+    }
+    .add__btn {
+        width: 30%;
+        border: 2px solid #00bdff;
+        margin-top: 5px;
+    }
+    .add__btn:hover {
+        padding: 12px 20px;
+    }
+    .add__btn i {
+        font-size: 20px;
+    }
+    .add__btn:hover i {
+        font-size: 20px;
+    }
+    .icome__title,
+    .expenses__title {
+        text-align: center;
+        font-size: 24px;
+    }
+    .expenses__title {
+        margin-top: 30px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .iphone-holder {
+        width: 100%;
+    }
+    .budget {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 375px) {
+    .iphone-holder {
+        display: none;
+    }
+    .budget {
+        width: 80%;
+        top: 60%;
+    }
+}

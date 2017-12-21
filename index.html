@@ -2,8 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
-        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="style.css">
         <title>Spendy - Budget App</title>
@@ -14,7 +15,7 @@
             <h1>Spendy</h1>
             <div class="budget">
                 <div class="budget__title">
-                    Available Budget for <span class="budget__title--month">%Month%</span>:
+                    Available Budget for <span class="budget__title--month">%Month%</span>
                 </div>
                 
                 <div class="budget__value">+ 2,345.64</div>
@@ -35,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            <img class="iphone-holder" src="/img/iphone-6s.png" alt="iPhone">
         </div>
         
         
@@ -48,7 +50,7 @@
                     </select>
                     <input type="text" class="add__description" placeholder="Add description">
                     <input type="number" class="add__value" placeholder="Value">
-                    <button class="add__btn"><i class="ion-ios-checkmark-outline"></i></button>
+                    <button class="add__btn"><i class="ion-plus-round"></i></button>
                 </div>
             </div>
             
@@ -56,7 +58,8 @@
                 <div class="income">
                     <h2 class="icome__title">Income</h2>
                     
-                    <div class="income__list">
+                    <div class="list_container income__list">
+                        <div class="no-item income_icon visible"><i class="ion-cash"></i></div>
                        
                         <!--
                         <div class="item clearfix" id="income-0">
@@ -88,7 +91,8 @@
                 <div class="expenses">
                     <h2 class="expenses__title">Expenses</h2>
                     
-                    <div class="expenses__list">
+                    <div class="list_container expenses__list">
+                        <div class="no-item expense_icon visible"><i class="ion-bag"></i></div>
                        
                         <!--
                         <div class="item clearfix" id="expense-0">

@@ -133,6 +133,9 @@ var budgetController = (function () {
             });
             return AllPerc;
         },
+        getItemsLength: function(type) {
+            return data.allItems[type].length;
+        },
         testing: function () {
             console.log(data);
         }
@@ -156,7 +159,9 @@ var UIController = (function () {
         percentageLabel: '.budget__expenses--percentage',
         container: '.container',
         expensePercLabel: '.item__percentage',
-        dateLabel: '.budget__title--month'
+        dateLabel: '.budget__title--month',
+        incomeIcon: '.income_icon',
+        expenseIcon: '.expense_icon'
     };
 
     var formatNumber = function(num, type) {
@@ -168,19 +173,16 @@ var UIController = (function () {
 
         // 2310.4567 -> + 2,310.46
         // 2000 -> + 2,000.00
-
-        // 1
         num = Math.abs(num);
         num = num.toFixed(2);
 
         // 2
         numSplit = num.split('.');
         int = numSplit[0];
-
-        if(int.length > 3) {
-            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
-        }
         dec = numSplit[1];
+
+        int = parseInt(int);
+        int = int.toLocaleString();
 
         // 3 & 4
         if(num !== '0.00') {
@@ -188,7 +190,7 @@ var UIController = (function () {
             sign = (type === 'inc' ? '+' : '-');
             return sign + ' ' + int + '.' + dec;
         } else {
-            return ' ' + int + '.' + dec;
+            return int + '.' + dec;
         }
     };
 
@@ -294,6 +296,23 @@ var UIController = (function () {
             });
             document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
         },
+        updateItemIcon: function(type, action, length) {
+            var el;
+
+            console.log(type + '   ' + action + '   ' + length);
+
+            if(type === 'inc') {
+                el = document.querySelector(DOMstrings.incomeIcon);
+            } else if(type === 'exp') {
+                el = document.querySelector(DOMstrings.expenseIcon);
+            }
+
+            if(action === 'remove' && length === 1) {
+                el.classList.remove('visible');
+            } else if(action === 'add' && length === 0) {
+                el.classList.add('visible');
+            }
+        },
         getDOMstrings: function () {
             return DOMstrings;
         }
@@ -348,7 +367,7 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     // Add Item Function
     var ctrlAddItem = function () {
-        var input, newItem;
+        var input, newItem, itemsLength;
 
         // 1. Get the field input data
         input = UICtrl.getInput();
@@ -369,12 +388,16 @@ var controller = (function (budgetCtrl, UICtrl) {
 
             // 6. Calculate & update percentages
             updatePercentages();
+
+            // 7. Remove Item Icon
+            itemsLength = budgetCtrl.getItemsLength(input.type);
+            UICtrl.updateItemIcon(input.type, 'remove', itemsLength);
         }
     };
 
     // Delete Item Function
     var ctrlDeleteItem = function (event) {
-        var itemID, splitID, type, ID;
+        var itemID, splitID, type, ID, itemsLength;
 
         itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
 
@@ -395,6 +418,10 @@ var controller = (function (budgetCtrl, UICtrl) {
 
             // 4. Calculate & update percentages
             updatePercentages();
+
+            // 6. Remove Item Icon
+            itemsLength = budgetCtrl.getItemsLength(type);
+            UICtrl.updateItemIcon(type, 'add', itemsLength);
         }
     };
 
