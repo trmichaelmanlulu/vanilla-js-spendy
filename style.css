@@ -46,6 +46,10 @@ body {
     font-size: 65px;
     text-align: center;
     text-shadow: 8px 1px 1px #00285a;
+    opacity: 0;
+    animation: fadeIn 1.8s;
+    animation-delay: 0.7s;
+    animation-fill-mode: both;
 }
 .budget__title--month {
     font-weight: bold;
@@ -67,6 +71,10 @@ body {
     font-weight: 300;
     background: #2a5c9230;
     padding: 8px;
+    opacity: 0;
+    animation: fadeIn 1s;
+    animation-delay: 0.7s;
+    animation-fill-mode: both;
 }
 
 .budget__value {
@@ -75,6 +83,10 @@ body {
     text-align: center;
     margin-bottom: 25px;
     letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeIn 1s;
+    animation-delay: 0.8s;
+    animation-fill-mode: both;
 }
 
 .budget__income,
@@ -82,15 +94,22 @@ body {
     position: relative;
     padding: 12px;
     text-transform: uppercase;
+    opacity: 0;
 }
 
 .budget__income {
     margin-bottom: 10px;
     background-color: #00bdff;
+    animation: fadeIn 1s;
+    animation-delay: 0.9s;
+    animation-fill-mode: both;
 }
 
 .budget__expenses {
     background-color: #FF5049;
+    animation: fadeIn 1s;
+    animation-delay: 1s;
+    animation-fill-mode: both;
 }
 
 .budget__income--text,
@@ -125,11 +144,11 @@ body {
 .iphone-holder {
     position: absolute;
     left: 50%;
-    top: 200px;
     transform: translateX(-50%);
     width: 35%;
+    animation: bounce 1s;
+    top: 190px;
 }
-
 
 /**********************************************
 *** BOTTOM PART
@@ -245,12 +264,16 @@ body {
 
 .income__list,
 .expenses__list {
-    position: relative;
     background: #f5f5f5;
+    float: left;
     padding: 15px 15px;
     border-radius: 3px;
     min-height: 400px;
     height:  65vh;
+    width: 100%;
+    position: relative;
+    display: table;
+    border-top: 1px solid #e2e2e2;
 }
 
 .no-item {
@@ -310,13 +333,23 @@ h2 {
 .item {
     position: relative;
     background: #fff;
-    padding: 13px;
+    padding: 20px 15px;
     border-bottom: 1px solid #e7e7e7;
     border-radius: 2px;
-    margin-bottom: 1px;
+    transition: all 0.1s ease-in-out;
+    animation: fadeUp 0.4s;
+    animation-fill-mode: both;
 }
 
-.item:nth-child(even) { background-color: #fbfbfb; }
+.item:hover {
+    background-color: #f0f0f0 !important;
+}
+
+.item:nth-child(odd) { background-color: #fbfbfb; }
+
+.item.fadeOut {
+    animation: fadeUpOut 0.4s;
+}
 
 .item__description {
     float: left;    
@@ -511,4 +544,28 @@ button i {
         width: 80%;
         top: 60%;
     }
+}
+
+/**********************************************
+*** CSS3 ANIMATIONS
+**********************************************/
+@keyframes bounce {
+    0% { top: 4000px }
+    50% { top: 120px; }
+    100% { top: 190px; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+    from { top: 100px; opacity: 0; }
+    to { top: 0; opacity: 1; }
+}
+
+@keyframes fadeUpOut {
+    from { top: 0; opacity: 1; }
+    to { top: -100px; opacity: 0; }
 }

@@ -137,7 +137,7 @@ var budgetController = (function () {
             return data.allItems[type].length;
         },
         testing: function () {
-            console.log(data);
+            // console.log(data);
         }
     };
 })();
@@ -235,7 +235,12 @@ var UIController = (function () {
         },
         removeListItem: function(selectorID) {
             var el = document.getElementById(selectorID);
-            el.parentNode.removeChild(el);
+            // Fade Out Effect
+            el.classList.add('fadeOut');
+            setTimeout(function() {
+                // Remove item
+                el.parentNode.removeChild(el);
+            }, 250);
         },
         clearFields: function () {
             var fields, fieldsArr;
@@ -298,8 +303,6 @@ var UIController = (function () {
         },
         updateItemIcon: function(type, action, length) {
             var el;
-
-            console.log(type + '   ' + action + '   ' + length);
 
             if(type === 'inc') {
                 el = document.querySelector(DOMstrings.incomeIcon);
