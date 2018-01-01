@@ -272,8 +272,14 @@ body {
     height:  65vh;
     width: 100%;
     position: relative;
-    display: table;
     border-top: 1px solid #e2e2e2;
+    overflow-y: auto;
+}
+
+.income__list::after, .expenses__list::after {
+    content: '';
+    display:  table;
+    clear: both;
 }
 
 .no-item {

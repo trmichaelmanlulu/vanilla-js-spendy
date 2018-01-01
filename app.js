@@ -267,7 +267,7 @@ var UIController = (function () {
             document.querySelector(DOMstrings.incomeLabel).textContent = formatNumber(obj.totalInc, 'inc');
             document.querySelector(DOMstrings.expensesLabel).textContent = formatNumber(obj.totalExp, 'exp');
 
-            // Show "--" if percentage is -1 or 0 else show percentage
+            // Show "--" if percentage is -1 else show percentage
             if (obj.percentage > 0) {
                 document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage + "%";
             } else {
@@ -336,6 +336,15 @@ var controller = (function (budgetCtrl, UICtrl) {
         document.addEventListener('keypress', function (event) {
             if (event.keyCode === 13 || event.which === 13) {
                 ctrlAddItem();
+            }
+        });
+
+        // Prevent user to input value > 1B
+        document.querySelector(DOM.inputValue).addEventListener('keypress', function(e) {
+            var currentValue = String.fromCharCode(e.which);
+            var finalValue = this.value + currentValue;
+            if(finalValue > 1000000000){ // max is 1B
+                e.preventDefault();
             }
         });
 
